@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -14,21 +14,93 @@ import {
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-export const description = "A stacked bar chart with a legend"
+export const description = "A horizontal bar chart"
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
+  { month: "September", desktop: 214 },
+  { month: "October", desktop: 214 },
+  { month: "November", desktop: 214 },
+  { month: "December", desktop: 214 },
+  { month: "January", desktop: 214 },
+  { month: "February", desktop: 214 },
+  { month: "March", desktop: 214 },
+  { month: "April", desktop: 214 },
+  { month: "May", desktop: 214 },
+  { month: "June", desktop: 214 },
+  { month: "July", desktop: 214 },
+  { month: "August", desktop: 214 },
 ]
 
 const chartConfig = {
@@ -36,44 +108,39 @@ const chartConfig = {
     label: "Desktop",
     color: "var(--chart-1)",
   },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
 } satisfies ChartConfig
 
-export function ChartBarStacked() {
+export function ChartBarHorizontal() {
   return (
-    <Card className="min-h-[200px] m-4">
+    <Card className="m-4">
       <CardHeader>
-        <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
+        <CardTitle>Bar Chart - Horizontal</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
+        <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            layout="vertical"
+            margin={{
+              left: -20,
+            }}
+          >
+            <XAxis type="number" dataKey="desktop" hide />
+            <YAxis
               dataKey="month"
+              type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="desktop"
-              stackId="a"
-              fill="var(--color-desktop)"
-              radius={[0, 0, 4, 4]}
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <Bar
-              dataKey="mobile"
-              stackId="a"
-              fill="var(--color-mobile)"
-              radius={[4, 4, 0, 0]}
-            />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={5} />
           </BarChart>
         </ChartContainer>
       </CardContent>
