@@ -44,7 +44,7 @@ const chartConfig = {
 
 export function ChartAreaLegend() {
   return (
-    <Card className="min-h-[100px] m-4">
+    <Card className="col-span-2 rounded-sm overflow-hidden">
       <CardHeader>
         <CardTitle>Area Chart - Legend</CardTitle>
         <CardDescription>
@@ -52,7 +52,7 @@ export function ChartAreaLegend() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
           <AreaChart
             accessibilityLayer
             data={chartData}
