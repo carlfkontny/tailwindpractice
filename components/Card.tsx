@@ -1,8 +1,17 @@
-'use client'
+"use client";
 
 import { TrendingUp } from "lucide-react";
 import { Badge } from "./ui/badge";
-
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardAction,
+  CardFooter,
+} from "./ui/card";
+import { description } from "./BarChart";
 
 export function Metric({
   label,
@@ -14,20 +23,26 @@ export function Metric({
   unit: string;
 }) {
   return (
-    <div className="flex flex-col gap-4 shadow-sm p-4 rounded-sm bg-card overflow-hidden">
-      <div className="text-muted-foreground flex flex-row gap-4 items-center w-full justify-between">
-        {label}
-        <Badge className="bg-green-500 text-white" variant="default">
-          <TrendingUp className="w-4 h-4" /> +12%
-        </Badge>
-      </div>
-      <div className="text-3xl font-bold text-black" title={value.toString() + " " + unit}>
-        {Math.round(Number(value)).toLocaleString()}{" "}
-        <span className="text-sm text-muted-foreground">{unit}</span>
-      </div>
-      <div className="text-xs text-muted-foreground flex flex-row gap-4 items-center">
-        <span>Stigende trend</span> <TrendingUp className="w-4 h-4" />
-      </div>
-    </div>
+    <Card className="@container/card border-none shadow-none">
+      <CardHeader>
+        <CardDescription>{label}</CardDescription>
+        <CardTitle className="text-2xl font-semibold">
+          {Number(value).toLocaleString()} <span className="text-sm text-gray-700">{unit}</span>
+        </CardTitle>
+
+        <CardAction>
+          <Badge variant="outline">
+            <TrendingUp className="size-4" />
+            +12.5%
+          </Badge>
+        </CardAction>
+      </CardHeader>
+      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <div className="line-clamp-1 flex gap-2 font-medium">
+          Bedre enn forrige år <TrendingUp className="size-4" />
+        </div>
+        
+      </CardFooter>
+    </Card>
   );
 }

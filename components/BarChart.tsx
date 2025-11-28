@@ -1,7 +1,7 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis, Cell } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, Cell, YAxis } from "recharts";
 
 import {
   Card,
@@ -38,11 +38,7 @@ const chartData = [
   { avfallstype: "Bygg", kgCO2e: 214, color: "var(--bygg)" },
   { avfallstype: "Tre", kgCO2e: 214, color: "var(--tre)" },
   { avfallstype: "Natur", kgCO2e: 214, color: "var(--natur)" },
-  {
-    avfallstype: "Medisinsk og smittefarlig avfall",
-    kgCO2e: 214,
-    color: "var(--medisinsk-og-smittefarlig-avfall)",
-  },
+
   { avfallstype: "Pant", kgCO2e: 214, color: "var(--pant)" },
   {
     avfallstype: "Ødelagte klær og tekstiler",
@@ -50,7 +46,7 @@ const chartData = [
     color: "var(--odelagte-klaer-og-tekstiler)",
   },
   { avfallstype: "Farlig avfall", kgCO2e: 214, color: "var(--farlig-avfall)" },
-  { avfallstype: "Matavfall", kgCO2e: 214, color: "var(--matavfall)" },
+  { avfallstype: "Matavfall", kgCO2e: 214, color: "var(--mat)" },
   { avfallstype: "Plastemballasje", kgCO2e: 186, color: "var(--plast)" },
   { avfallstype: "Papir", kgCO2e: 305, color: "var(--papp-papir-kartong)" },
   { avfallstype: "Metal", kgCO2e: 237, color: "var(--metall)" },
@@ -66,11 +62,6 @@ const chartData = [
   { avfallstype: "Bygg", kgCO2e: 214, color: "var(--bygg)" },
   { avfallstype: "Tre", kgCO2e: 214, color: "var(--tre)" },
   { avfallstype: "Natur", kgCO2e: 214, color: "var(--natur)" },
-  {
-    avfallstype: "Medisinsk og smittefarlig avfall",
-    kgCO2e: 214,
-    color: "var(--medisinsk-og-smittefarlig-avfall)",
-  },
   { avfallstype: "Pant", kgCO2e: 214, color: "var(--pant)" },
   {
     avfallstype: "Ødelagte klær og tekstiler",
@@ -78,7 +69,7 @@ const chartData = [
     color: "var(--odelagte-klaer-og-tekstiler)",
   },
   { avfallstype: "Farlig avfall", kgCO2e: 214, color: "var(--farlig-avfall)" },
-  { avfallstype: "Matavfall", kgCO2e: 214, color: "var(--matavfall)" },
+  { avfallstype: "Matavfall", kgCO2e: 214, color: "var(--mat)" },
 ];
 
 function sortDataDescending<T extends { kgCO2e: number }>(data: T[]): T[] {
@@ -98,13 +89,16 @@ export function ChartBarDefault() {
   const sortedData = sortDataDescending(chartData);
 
   return (
-    <Card className="rounded-sm overflow-hidden">
+    <Card className="overflow-hidden border-none shadow-none">
       <CardHeader>
         <CardTitle>Bar Chart</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="max-h-[200px] w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="max-h-[300px] min-w-[1200px] w-full"
+        >
           <BarChart accessibilityLayer data={sortedData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -112,13 +106,23 @@ export function ChartBarDefault() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              // tickFormatter={(value: string) => value.slice(0, 5)}  //diagonal text
+              angle={-55}
+              textAnchor="end"
+              height={150}
+            />
+            <YAxis
+              dataKey="kgCO2e"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value: number) => value.toString()}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="kgCO2e" fill="black" radius={8}>
+            <Bar dataKey="kgCO2e" fill="black" radius={4}>
               {sortedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
