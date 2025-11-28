@@ -3,6 +3,9 @@
 import { ChartAreaLegend } from "@/components/AreaChart";
 import { ChartBarDefault } from "@/components/BarChart";
 import { Metric } from "@/components/Card";
+import { Scope14Bar } from "@/components/Scope1-4Bar";
+import { ChartPieDonutText } from "@/components/ScopePie";
+import { TimeArea } from "@/components/TimeArea";
 
 export default function Home() {
   return (
@@ -25,6 +28,15 @@ export default function Home() {
           </div>
           <div className="col-span-3 max-h-[500px]">
             <ChartBarDefault />
+          </div>
+          <div className="col-span-1">
+            <ChartPieDonutText />
+          </div>
+          <div className="col-span-1">
+            <Scope14Bar />
+          </div>
+          <div className="col-span-1">
+            <TimeArea />
           </div>
         </div>
       </div>
