@@ -22,11 +22,11 @@ import {
 export const description = "A horizontal bar chart";
 
 const chartData = [
-  { kilde: "Energigjenvinning, restavfall", tonnCO2e: 186 },
-  { kilde: "Materialgjenvinning, papir", tonnCO2e: 305 },
-  { kilde: "Materialgjenvinning, trevirke", tonnCO2e: 237 },
-  { kilde: "Energigjenvinning, metaller", tonnCO2e: 73 },
-  { kilde: "Energigjenvinning, maling, lim, lakk", tonnCO2e: 209 },
+  { kilde: "Energigjenvinning, restavfall", tonnCO2e: 18218 },
+  { kilde: "Materialgjenvinning, papir", tonnCO2e: 3408 },
+  { kilde: "Materialgjenvinning, trevirke", tonnCO2e: 1248 },
+  { kilde: "Energigjenvinning, metaller", tonnCO2e: 844 },
+  { kilde: "Energigjenvinning, maling, lim, lakk", tonnCO2e: 643 },
 ].sort((a, b) => b.tonnCO2e - a.tonnCO2e);
 
 const chartConfig = {
