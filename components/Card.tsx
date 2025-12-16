@@ -25,7 +25,7 @@ export function Metric({
   return (
     <Card className="@container/card border-none shadow-none">
       <CardHeader>
-        <CardDescription>{label}</CardDescription>
+        <CardDescription className="text-xs text-gray-700">{label}</CardDescription>
         <CardTitle className="text-2xl font-semibold">
           {Number(value).toLocaleString()} <span className="text-sm text-gray-700">{unit}</span>
         </CardTitle>

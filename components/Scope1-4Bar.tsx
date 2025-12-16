@@ -1,13 +1,13 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
+import * as React from "react";
+import { Info, X } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -35,14 +35,77 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function Scope14Bar() {
+  const [isInfoOpen, setIsInfoOpen] = React.useState(false);
+  const infoBoxRef = React.useRef<HTMLDivElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isInfoOpen &&
+        infoBoxRef.current &&
+        buttonRef.current &&
+        !infoBoxRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsInfoOpen(false);
+      }
+    };
+
+    if (isInfoOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isInfoOpen]);
+
   return (
     <Card className="flex flex-col border-none shadow-none h-full">
       <CardHeader>
-        <CardTitle>Utslipp per scope</CardTitle>
-        <CardDescription>Utslipp per scope 1-4</CardDescription>
+        <CardTitle>Utslipp og klimagevinster</CardTitle>
+        <CardDescription className="relative">
+          Alle utslipp fordelt på scope 1-3 og{" "}
+          <button
+            ref={buttonRef}
+            onClick={() => setIsInfoOpen(!isInfoOpen)}
+            className="text-primary underline underline-offset-2 hover:text-primary/80 cursor-pointer inline-flex items-center gap-1"
+          >
+            unngåtte utslipp (scope 4)
+            <Info className="h-3 w-3" />
+          </button>
+          {isInfoOpen && (
+            <div
+              ref={infoBoxRef}
+              className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 w-80 bg-popover border border-border rounded-lg shadow-lg p-4"
+            >
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h4 className="font-semibold text-sm">Scope 4 forklaring</h4>
+                <button
+                  onClick={() => setIsInfoOpen(false)}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Lukk"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <div>
+                  <strong className="text-foreground">Scope 4:</strong> Unngåtte
+                  utslipp (avoided emissions) refererer til utslipp som ikke
+                  oppstår på grunn av organisasjonens produkter eller tjenester.
+                  Dette inkluderer klimagevinster fra for eksempel gjenbruk,
+                  resirkulering, eller produkter som erstatter mer
+                  karbonintensive alternativer.
+                </div>
+              </div>
+            </div>
+          )}
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
-        <ChartContainer config={chartConfig} className="h-full w-full">
+        <ChartContainer config={chartConfig} className="h-[200px] w-full">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -59,14 +122,6 @@ export function Scope14Bar() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-center gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this scope <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
   );
 }

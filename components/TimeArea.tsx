@@ -50,7 +50,7 @@ export function TimeArea() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
-        <ChartContainer config={chartConfig} className="h-full w-full">
+        <ChartContainer config={chartConfig} className="max-h-[200px] w-full">
           <AreaChart
             accessibilityLayer
             data={chartData}
