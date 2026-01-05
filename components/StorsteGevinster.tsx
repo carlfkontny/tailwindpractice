@@ -32,20 +32,20 @@ const chartData = [
 const chartConfig = {
   kilde: {
     label: "Kilde",
-    color: "var(--chart-5)",
+    color: "var(--chart-6)",
   },
   tonnCO2e: {
     label: "Tonn CO2e",
-    color: "var(--chart-1)",
+    color: "var(--chart-2)",
   },
 } satisfies ChartConfig;
 
-export function StorsteUtslipp() {
+export function StorsteGevinster() {
   return (
     <Card className="overflow-hidden border-none shadow-none">
       <CardHeader>
-        <CardTitle>Største utslipp</CardTitle>
-        <CardDescription>Hvor kommer de største utslippene fra i 2025?</CardDescription>
+        <CardTitle>Største gevinster</CardTitle>
+        <CardDescription>Hvor kommer de største gevinstene fra i 2025?</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="max-h-[200px] w-full">

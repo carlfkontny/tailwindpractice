@@ -63,9 +63,9 @@ export function ChartPieDonutText() {
   return (
     <Card className="flex flex-col border-none shadow-none">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Totale utslipp i 2024 </CardTitle>
+        <CardTitle>Totale utslipp i 2025 </CardTitle>
         <CardDescription className="relative">
-          Totale utslipp i 2024 fordelt på{" "}
+          Totale utslipp i 2025 fordelt på{" "}
           <button
             ref={buttonRef}
             onClick={() => setIsInfoOpen(!isInfoOpen)}

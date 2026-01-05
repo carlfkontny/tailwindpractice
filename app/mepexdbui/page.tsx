@@ -1,6 +1,7 @@
 import { KPI } from "./components/KPI";
 import { Avfallskilder } from "./components/Avfallskilder";
 import { RestPerInnbygger } from "./components/RestPerInnbygger";
+import { CategoryCard } from "./components/CategoryCard";
 
 export default function Mepexdbui() {
   return (
@@ -36,9 +37,25 @@ export default function Mepexdbui() {
         <RestPerInnbygger />
       </div>
       <hr className="w-2/3 my-8" />
-      <p className="text-med text-gray-500">Her kan du dykke ned i skattekammeret</p>
+      <p className="text-med text-gray-500">
+        Her kan du dykke ned i skattekammeret
+      </p>
       <div className="grid grid-cols-3 gap-4 mt-8 max-w-6xl w-full px-4">
-        
+        <CategoryCard
+          title="Plukkanalyser"
+          description="Her finner du sammensetning av avfall i Norge"
+          href="/mepexdbui/plukkanalyser"
+        />
+        <CategoryCard
+          title="Utslippsfaktorer"
+          description="Disse er nyttige til klimaregnskap"
+          href="/mepexdbui/utslippsfaktorer"
+        />
+        <CategoryCard
+          title="Kommuneinfo"
+          description="Her er nyttig info om kommunenr, innbyggere ++"
+          href="/mepexdbui/kommuneinfo"
+        />
       </div>
     </div>
   );

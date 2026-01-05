@@ -21,12 +21,14 @@ import {
 export const description = "An area chart with gradient fill"
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { year: "2018", desktop: 186, mobile: 80 },
+  { year: "2019", desktop: 305, mobile: 200 },
+  { year: "2020", desktop: 237, mobile: 120 },
+  { year: "2021", desktop: 73, mobile: 190 },
+  { year: "2022", desktop: 209, mobile: 130 },
+  { year: "2023", desktop: 214, mobile: 140 },
+  { year: "2024", desktop: 214, mobile: 140 },
+  { year: "2025", desktop: 214, mobile: 140 },
 ]
 
 const chartConfig = {
@@ -61,11 +63,11 @@ export function TimeArea() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="year"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <defs>

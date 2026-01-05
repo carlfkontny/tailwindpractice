@@ -89,15 +89,15 @@ export function ChartBarDefault() {
   const sortedData = sortDataDescending(chartData);
 
   return (
-    <Card className="overflow-hidden border-none shadow-none">
+    <Card className="border-none shadow-none">
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Klimagevinst per avfallstype</CardTitle>
+        <CardDescription>Klimagevinst per avfallstype i 2025.</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="max-h-[300px] min-w-[1200px] w-full"
+          className="max-h-[300px] w-full"
         >
           <BarChart accessibilityLayer data={sortedData}>
             <CartesianGrid vertical={false} />
