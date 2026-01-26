@@ -9,6 +9,7 @@ import { Scope14Bar } from "@/components/Scope1-4Bar";
 import { ChartPieDonutText } from "@/components/ScopePie";
 import { TimeArea } from "@/components/TimeArea";
 import { TabellUtslipp } from "@/components/TabellUtslipp";
+import { StolpeUtslippPerKategori } from "@/components/StolpeUtslippPerKategori";
 
 
 export default function Home() {
@@ -55,6 +56,9 @@ export default function Home() {
           </div>
           <div className="col-span-4 shadow-sm">
             <TimeArea />
+          </div>
+          <div className="col-span-4 shadow-sm">
+            <StolpeUtslippPerKategori />
           </div>
           <div className="col-span-4 shadow-sm p-10">
             <TabellUtslipp />
