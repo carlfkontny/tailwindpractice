@@ -6,12 +6,10 @@ import {
   Card,
   CardTitle,
   CardHeader,
-  CardContent,
   CardDescription,
   CardAction,
   CardFooter,
 } from "./ui/card";
-import { description } from "./BarChart";
 
 export function Metric({
   label,

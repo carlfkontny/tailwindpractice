@@ -14,8 +14,36 @@ import { Input } from "@/components/ui/input";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Type definitions
+type PlukkanalyseRow = {
+  id: number;
+  kategori: string;
+  prosent: number;
+  tonn: number;
+  år: number;
+};
+
+type UtslippsfaktorRow = {
+  id: number;
+  kategori: string;
+  kgCO2ePerTonn: number;
+  kilde: string;
+  år: number;
+};
+
+type KommuneinfoRow = {
+  id: number;
+  kommunenr: string;
+  navn: string;
+  innbyggere: number;
+  areal: number;
+  region: string;
+};
+
+type DataRow = PlukkanalyseRow | UtslippsfaktorRow | KommuneinfoRow;
+
 // Sample data for each category
-const categoryData: Record<string, any[]> = {
+const categoryData: Record<string, DataRow[]> = {
   plukkanalyser: [
     { id: 1, kategori: "Papir", prosent: 25.3, tonn: 2800, år: 2024 },
     { id: 2, kategori: "Plast", prosent: 18.7, tonn: 2070, år: 2024 },
@@ -203,7 +231,7 @@ export default function CategoryPage() {
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
 
   const config = categoryConfig[category];
-  const data = categoryData[category] || [];
+  const data = useMemo(() => categoryData[category] || [], [category]);
 
   // Filter and sort data
   const filteredAndSortedData = useMemo(() => {
@@ -288,7 +316,7 @@ export default function CategoryPage() {
     return names[key] || key;
   };
 
-  const formatCellValue = (value: any) => {
+  const formatCellValue = (value: string | number | null | undefined) => {
     if (typeof value === "number") {
       if (value > 1000) {
         return value.toLocaleString("no-NO");

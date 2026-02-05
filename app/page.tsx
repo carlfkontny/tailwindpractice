@@ -1,6 +1,5 @@
 "use client";
 
-import { ChartAreaLegend } from "@/components/AreaChart";
 import { ChartBarDefault } from "@/components/BarChart";
 import { Metric } from "@/components/Card";
 import { StorsteUtslipp } from "@/components/StorsteUtslipp";

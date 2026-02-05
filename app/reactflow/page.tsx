@@ -2,14 +2,11 @@
 
 import React, { useState, useCallback } from 'react';
 import ReactFlow, {
-  Node,
-  Edge,
   Controls,
   Background,
   useNodesState,
   useEdgesState,
   addEdge,
-  Connection,
   MarkerType,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -58,14 +55,6 @@ const WasteNode = ({ data }) => {
     <div className={`waste-node ${data.type}`}>
       <div className="node-icon">{data.icon}</div>
       <div className="node-label">{data.label}</div>
-    </div>
-  );
-};
-
-const EdgeLabel = ({ data }) => {
-  return (
-    <div className="edge-label">
-      {data?.transport || '?'}
     </div>
   );
 };
@@ -128,21 +117,6 @@ export default function WasteValueChain() {
     };
     setNodes((nds) => [...nds, newNode]);
     setNodeCounter(nodeCounter + 1);
-  };
-
-  const updateNodeLabel = (nodeId, newLabel) => {
-    setNodes((nds) =>
-      nds.map((n) =>
-        n.id === nodeId ? { ...n, data: { ...n.data, label: newLabel } } : n
-      )
-    );
-  };
-
-  const deleteNode = (nodeId) => {
-    setNodes((nds) => nds.filter((n) => n.id !== nodeId));
-    setEdges((eds) =>
-      eds.filter((e) => e.source !== nodeId && e.target !== nodeId)
-    );
   };
 
   return (
